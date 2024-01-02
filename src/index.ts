@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import { config as dotenvConfig } from 'dotenv';
-// require('express-async-errors');
+require('express-async-errors');
 
 // Modules
 import { ProductsModule } from './products/products.module';
