@@ -26,7 +26,9 @@ export class ProductsService {
     return createdProduct;
   }
 
-  getAllProducts() {}
+  async getAllProducts() {
+    return await this.prisma.product.findMany();
+  }
 
   async getProductById(productId: string) {
     return await this.prisma.product.findUnique({

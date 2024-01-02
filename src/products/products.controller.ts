@@ -13,8 +13,11 @@ export class ProductsController {
   };
 
   handleGetAllProducts = async (req: Request, res: Response) => {
-    return res.status(200).send({
-      message: 'Consultando todos os produtos...',
+    const allProducts = await this.productsService.getAllProducts();
+
+    return res.status(200).json({
+      result: allProducts,
+      total: allProducts.length,
     });
   };
 

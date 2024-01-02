@@ -1,6 +1,7 @@
 import { Express, Router } from 'express';
 
 // Middlewares
+import { AuthMiddleware } from '../auth/auth.middleware';
 import { RequestValidatorMiddleware } from '../shared/middlewares';
 
 // DTOs
@@ -20,7 +21,11 @@ export class ProductsRouter {
       RequestValidatorMiddleware.validateDTO(CreateProductDTO),
       this.productsController.handleCreateProduct
     );
-    this._productsRouter.get('/', this.productsController.handleGetAllProducts);
+    this._productsRouter.get(
+      '/',
+      new AuthMiddleware().ensureAuthenticated,
+      this.productsController.handleGetAllProducts
+    );
     this._productsRouter.get('/:productId', this.productsController.handleGetProductById);
 
     expressApp.use('/products', this._productsRouter);

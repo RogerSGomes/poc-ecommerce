@@ -1,4 +1,4 @@
-import { sign, verify } from 'jsonwebtoken';
+import { sign } from 'jsonwebtoken';
 import * as bcrypt from 'bcrypt';
 
 import { UsersService } from '../users/users.service';
